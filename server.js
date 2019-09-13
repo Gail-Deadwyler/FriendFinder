@@ -11,18 +11,36 @@
  */
 
 //Dependencies
+// =============================================================
 var express = require("express");
 
-//Create an instance of Express
+
+// Sets up the Express App
+// =============================================================
 var app = express();
 
 //Define a PORT
+// =============================================================
 var PORT = process.env.PORT || 3000;
 
-//Set server to listen on PORT number
-app.listen(PORT, function(err){
-    if(err) throw err;
+// Sets up the Express app to handle data parsing
+// =============================================================
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
+
+// Routes
+// The below points our server to a series of "route" files.
+// These routes give our server a "map" of how to respond when users visit or request data from various URLs.
+// ================================================================================
+
+//require("./app/routing/apiRoutes")(app);
+require("./app/routing/htmlRoutes")(app);
+
+
+// Starts the server to begin listening on PORT 3000 or Heroku PORT
+// =============================================================
+app.listen(PORT, function (err) {
+    if (err) throw err;
     console.log(`Listening on PORT: ${PORT}`);
 
 });
- 
