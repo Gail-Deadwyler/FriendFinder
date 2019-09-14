@@ -198,6 +198,7 @@
     //var friends = require("../data/friends");
 
 
+
         // Capture the form inputs
         $("#submit").on("click", function (event) {
             event.preventDefault();
@@ -246,27 +247,32 @@
                 // The callback is the response of the server. 
 
                 $.post("/api/friends", userData, function (data) {
+                    console.log(`Data is ${JSON.stringify(data)}`);
 
                     if (data) {
                         //Logic for compatability
-                        var scoresArray = [];
-                        scoresArray.push(data.scores);
-                        
+                        //var lowestScore;
+
+                        // var scoresArray = [];
+                        // scoresArray.push(data.scores);                       
+
+                        // console.log(`Scores array is: ${scoresArray}`);
+
+                        // console.log(`Data: ${data}`);
+                        //console.log(`Type of scores: ${typeof(data.scores)}`);
+                        // console.log(`Form name: ${(data.name)}`);
+
                         //==> Scores array is: 2,5,2,5,3,4,4,1,3,5
                         //==> Name: Benson Jax
 
-                        console.log(`Scores array is: ${scoresArray}`);
+                        //console.log(`Friends Array is: ${friends.scores}`);
+                        //console.log(`Friends names: ${friends.name}`);
 
-                        //console.log(`Data: ${data}`);
-                        //console.log(`Type of scores: ${typeof(data.scores)}`);
-                        console.log(`Form name: ${(data.name)}`);
-
-                        console.log(`Friends Array is: ${friends.scores}`);
-                        console.log(`Friends names: ${friends.name}`);
+                        //==> undefined
 
                         
 
-                        //arr1.map((a, i)=>Math.abs(a-arr2[i]))
+                       
 
 
 

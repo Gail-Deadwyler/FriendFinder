@@ -23,9 +23,30 @@ module.exports = function(app) {
     });
 
     app.post("/api/friends", function(req, res){
+        var currentUserScore = req.body.scores;
+        var perfectMatch = 1100;
+        var matchedIndex = 0;
 
+        for (var i = 0; i < friends.length; i++) {
+
+            var totalDiff = 0;
+          
+            var currentFriendScores = friends[i].scores;
+            friends[i].scores.map((a, i)=>{
+               
+            totalDiff += Math.abs(a[i] - currentUserScore[i]);
+            });
+
+           if(totalDiff <= perfectMatch) {
+               perfectMatch = totalDiff;
+               matchedIndex = i;
+
+           }
+        }
+        
+         //arr1.map((a, i)=>Math.abs(a-arr2[i]))
         friends.push(req.body);
-        res.json(req.body);
+        res.json(friends[matchedIndex]);
     });
 
 
