@@ -11,46 +11,52 @@ var friends = require("../data/friends");
 
 // ===============================================================================
 
-module.exports = function(app) {
+module.exports = function (app) {
     // API GET Requests
     // Below code handles when users "visit" a page.
-    // In each of the below cases when a user visits a link
+    // In each of the below cases when a formData visits a link
     // (ex: localhost:PORT/api/admin... they are shown a JSON of the data in the table)
     // ---------------------------------------------------------------------------
 
-    app.get("/api/friends", function(req, res){
+    app.get("/api/friends", function (req, res) {
         res.json(friends);
     });
 
-    app.post("/api/friends", function(req, res){
-        var currentUserScore = req.body.scores;
-        var perfectMatch = 1100;
-        var matchedIndex = 0;
+    app.post("/api/friends", function (req, res) {
+        var newScore = req.body.scores;
+        console.log(`Score coming from the Form: ${newScore}`);
 
-        for (var i = 0; i < friends.length; i++) {
+        var formData = req.body;
 
-            var totalDiff = 0;
-          
-            var currentFriendScores = friends[i].scores;
-            friends[i].scores.map((a, i)=>{
-               
-            totalDiff += Math.abs(a[i] - currentUserScore[i]);
-            });
-
-           if(totalDiff <= perfectMatch) {
-               perfectMatch = totalDiff;
-               matchedIndex = i;
-
-           }
+        // parseInt the form Data scores because they are coming in as strings
+        for (var i = 0; i < formData.scores.length; i++) {
+            formData.scores[i] = parseInt(formData.scores[i]);
         }
-        
-         //arr1.map((a, i)=>Math.abs(a-arr2[i]))
-        friends.push(req.body);
-        res.json(friends[matchedIndex]);
+
+        // i choose a minimal difference in scores to be 20
+        var matched = 0;
+        var minDiff = 20;
+
+        //loop through current friends array
+        for (var i = 0; i < friends.length; i++) {
+            var totalDiff = 0;
+            //loop through the friend scores array
+            for (var j = 0; j < friends[i].scores.length; j++) {
+                var difference = Math.abs(formData.scores[j] - friends[i].scores[j]);
+                totalDiff += difference;
+            }
+
+            //Now, find the best match after scores are compared
+            if (totalDiff <= minDiff) {
+                matched = i;
+                minDiff = totalDiff;
+            }
+        }
+
+        // after finding match, add formData to friend array
+        friends.push(formData);
+
+        // send match back to the browser
+        res.json(friends[matched]);
     });
-
-
-
-
-
 };

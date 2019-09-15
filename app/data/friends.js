@@ -8,7 +8,7 @@
 var friendsArray = [
 
     {
-        "name": "Joe",
+        "name": "Joseph Gordon ",
         "photo": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTJpLEtAUllVLy5aOV--Il95TWvhmHzJfWZ7cT9G4bXc7rNAkisFQ",
         "scores":[
             7,
@@ -24,7 +24,7 @@ var friendsArray = [
           ]
     },
     {
-        "name": "Jamie",
+        "name": "Jamie Mueller",
         "photo": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQLHujDlXsFTnxaLGZPjnrPejsDGCGVk92CXEf8cW5tBN9nG9rU",
         "scores":[
             5,

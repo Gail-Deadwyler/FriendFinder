@@ -2,9 +2,9 @@
  * Programming assignment:  Friend Finder
  * Developer:               Gail Deadwyler
  * Date Written:            9/14/19
- * Purpose:                 In this activity, you'll build a compatibility-based "FriendFinder" 
- *                          application -- basically a dating app. This full-stack site will 
- *                          take in results from your users' surveys, then compare their answers 
+ * Purpose:                 This is a compatibility-based "FriendFinder" application
+ *                          -- basically a dating app. This full-stack site will 
+ *                          take in results from a survey, then compare answers 
  *                          with those from other users. The app will then display the name 
  *                          and picture of the user with the best overall match.
  *                          
@@ -23,7 +23,7 @@ var app = express();
 // =============================================================
 var PORT = process.env.PORT || 3000;
 
-// Sets up the Express app to handle data parsing
+// Sets up the Express app to handle data parsing and to use json data
 // =============================================================
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
